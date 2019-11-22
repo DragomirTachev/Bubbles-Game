@@ -1,0 +1,19 @@
+body  {
+    height: 100vh;
+    width: 100vw;
+    box-sizing: border-box;
+    overflow:hidden;
+    cursor: pointer;
+}
+
+.sphere {
+    position: fixed;
+    height:100px;
+    width: 100px;
+    border-radius: 50%;
+    transition: transform 0.25s ease-in-out;
+}
+
+.sphere:hover {
+    transform: scale(1.2);
+}
