@@ -11,6 +11,6 @@ All you need to do is to open the project folder, open a console and enter "npm 
 After that is done just open the index.html file and the "game" starts.
 When clicking on a blank section of the screen a circle will appear in a random
 position with a random color and opacity. 
-When you click on an already created circles - it will disappear.
-After managing to reach 150 visible circles on the scree - the page will clear itself and
+When you click on an already created circle - it will disappear.
+After managing to reach 150 visible circles on the screen - the page will clear itself and
 create the first new circle.
