@@ -6,6 +6,7 @@ $(document).ready(() => {
     let blueValue = 0;
     let currentDiameter = 100;
     let canWrite = false;
+    let trimer;
 
     function createNewCircle(xPos, yPos) {
         let DOMElem = $('<div></div>');
@@ -47,17 +48,19 @@ $(document).ready(() => {
     }
 
     function checkWriteConditions(ev) {
-
-        console.log(canWrite);
-        console.log($('.sphere').length);
         if (canWrite) {
             createNewCircle(ev.clientX, ev.clientY);
+            canWrite = false;
+            timer = setTimeout(() => {
+                canWrite = true;
+            }, 5);
         }
     }
 
     $('body').on('mousedown', (ev) => {
         ev.preventDefault();
         ev.stopPropagation();
+        createNewCircle(ev.clientX, ev.clientY);
         canWrite = true;
     });
 
@@ -65,6 +68,7 @@ $(document).ready(() => {
     $('body').on('mouseup', (ev) => {
         ev.preventDefault();
         ev.stopPropagation();
+        clearTimeout(timer);
         canWrite = false;
     });
 
@@ -85,6 +89,7 @@ $(document).ready(() => {
     $('body').on('mousedown', '.sphere', (ev) => {
         ev.preventDefault();
         ev.stopPropagation();
+        createNewCircle(ev.clientX, ev.clientY);
         canWrite = true;
     });
 
@@ -92,6 +97,7 @@ $(document).ready(() => {
     $('body').on('mouseup', '.sphere', (ev) => {
         ev.preventDefault();
         ev.stopPropagation();
+        clearTimeout(timer);
         canWrite = false;
     });
 
