@@ -6,7 +6,7 @@ $(document).ready(() => {
     let blueValue = 0;
     let currentDiameter = 100;
     let canWrite = false;
-    let trimer;
+    let timer;
 
     function createNewCircle(xPos, yPos) {
         let DOMElem = $('<div></div>');
@@ -40,9 +40,6 @@ $(document).ready(() => {
                     + ',' + pallette.green + ',' + pallette.blue + ',1)');
 
                 $('body .recent-colors-container').append(newPallete);
-
-
-
             }
         })
     }
@@ -64,7 +61,6 @@ $(document).ready(() => {
         canWrite = true;
     });
 
-
     $('body').on('mouseup', (ev) => {
         ev.preventDefault();
         ev.stopPropagation();
@@ -76,7 +72,6 @@ $(document).ready(() => {
         currentDiameter = ev.target.value;
         $('body .diameter-value').text(currentDiameter);
     });
-
 
     $('body').on('mousedown', '.helper-panel', (ev) => {
         ev.stopPropagation();
@@ -92,7 +87,6 @@ $(document).ready(() => {
         createNewCircle(ev.clientX, ev.clientY);
         canWrite = true;
     });
-
 
     $('body').on('mouseup', '.sphere', (ev) => {
         ev.preventDefault();
@@ -119,7 +113,6 @@ $(document).ready(() => {
         calculateColor();
     });
 
-
     $('body .clear').on('mousedown', () => {
         $('body input#red-value').val(0);
         $('body input#green-value').val(0);
@@ -141,6 +134,15 @@ $(document).ready(() => {
         });
 
         resetPallettes();
+    });
+
+    /** when having more than 1 monitor, when holding the mouse key and
+     *  leaving the painting screen, avoid a bug when reentering, that cause the 
+     * painting process to continue even if the mouse key is no longer being pressed
+    */
+    $('body').on('mouseleave', () => {
+        canWrite = false;
+        $('body').trigger('mouseup');
     });
 
     $('body .recent-colors-container').on('mousedown', '.pallette-cube', (ev) => {
@@ -168,5 +170,4 @@ $(document).ready(() => {
     $('body').on('mousemove', '.sphere', (ev) => {
         checkWriteConditions(ev)
     });
-
-})
+});

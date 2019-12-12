@@ -23,6 +23,12 @@ body  {
     cursor: default;
 }
 
+.shape-size-text {
+    display: inline-block;
+    line-height: 23px;
+    vertical-align: top;
+}
+
 .helper-panel input {
     display: inline-block;
     outline:1px solid rgba(0,0,0, 0.2);
