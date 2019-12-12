@@ -1,20 +1,14 @@
 $(document).ready(() => {
-    const MAX_ALLOWED_BUBBLES = 200;
-    const BUBBLE_DIMENSION = 200;
     const pallettes = [];
     let nextZIndex = 0;
     let redValue = 0;
     let greenValue = 0;
     let blueValue = 0;
     let currentDiameter = 100;
+    let canWrite = false;
 
     function createNewCircle(xPos, yPos) {
         let DOMElem = $('<div></div>');
-
-        if (nextZIndex > MAX_ALLOWED_BUBBLES) {
-            nextZIndex = 0;
-            $('body').html('');
-        }
 
         let opacity = Math.random().toFixed(1);
         opacity = opacity < 0.5 ? 0.5 : opacity;
@@ -52,11 +46,26 @@ $(document).ready(() => {
         })
     }
 
+    function checkWriteConditions(ev) {
+
+        console.log(canWrite);
+        console.log($('.sphere').length);
+        if (canWrite) {
+            createNewCircle(ev.clientX, ev.clientY);
+        }
+    }
+
     $('body').on('mousedown', (ev) => {
         ev.preventDefault();
         ev.stopPropagation();
-        ev.cancelBubble = true;
-        createNewCircle(ev.offsetX, ev.offsetY);
+        canWrite = true;
+    });
+
+
+    $('body').on('mouseup', (ev) => {
+        ev.preventDefault();
+        ev.stopPropagation();
+        canWrite = false;
     });
 
     $('body #shape-diameter').on('change', (ev) => {
@@ -74,9 +83,16 @@ $(document).ready(() => {
     });
 
     $('body').on('mousedown', '.sphere', (ev) => {
-        createNewCircle(ev.offsetX + ev.target.offsetLeft, ev.offsetY + ev.target.offsetTop);
         ev.preventDefault();
         ev.stopPropagation();
+        canWrite = true;
+    });
+
+
+    $('body').on('mouseup', '.sphere', (ev) => {
+        ev.preventDefault();
+        ev.stopPropagation();
+        canWrite = false;
     });
 
     $('body input#red-value').on('mouseup', (ev) => {
@@ -138,4 +154,13 @@ $(document).ready(() => {
         $('.green-value').text(greenValue);
         $('.blue-value').text(blueValue);
     });
+
+    $('body').on('mousemove', (ev) => {
+        checkWriteConditions(ev);
+    });
+
+    $('body').on('mousemove', '.sphere', (ev) => {
+        checkWriteConditions(ev)
+    });
+
 })
