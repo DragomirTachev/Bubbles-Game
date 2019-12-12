@@ -4,16 +4,112 @@ body  {
     box-sizing: border-box;
     overflow:hidden;
     cursor: pointer;
+    margin: 0;
 }
+
+.helper-panel {
+    display: inline-block;
+    position: fixed;
+    width: 60vw;
+    min-width: 400px;
+    top: 0;
+    left: calc(50% - 30vw);
+    padding: 20px;
+    box-sizing: border-box;
+    background-color:white;
+    border:1px solid rgba(0,0,0, 0.2);
+    border-top: 0;
+    z-index: 5000;
+    cursor: default;
+}
+
+.helper-panel input {
+    display: inline-block;
+    outline:1px solid rgba(0,0,0, 0.2);
+    width: calc(100% - 60px);
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.color-section span {
+    display: inline-block;
+    line-height: 21px;
+    vertical-align: top;
+    margin-top: 2px;
+    width: 50px;
+    box-sizing: border-box;
+    text-align: center;    
+}
+
+.shape-width-wrapper {
+    padding: 10px;
+}
+
+#shape-diameter {
+    width: 200px;
+    height: 23px;
+    line-height: 23px;
+    margin: 0;
+}
+
 
 .sphere {
     position: fixed;
-    height:100px;
-    width: 100px;
     border-radius: 50%;
     transition: transform 0.25s ease-in-out;
 }
 
-.sphere:hover {
-    transform: scale(1.2);
+.color-demo {
+    width: 100%;
+    height: 60px;
+    border:1px solid rgba(0,0,0, 0.2);
+    background-color: black;
+}
+
+.recent-colors-container {
+    display: inline-block;
+    background-color:transparent;
+    width: 115px;
+    height: 23px;
+    line-height: 23px;
+    vertical-align: bottom;
+    border:1px solid rgba(0,0,0, 0.2);
+}
+
+.recent-text {
+    white-space: nowrap;
+    padding: 3px 10px;
+}
+
+.button {
+    border-radius: 4px;
+    padding: 4px 10px;
+    outline: 0;
+    border:0;
+    background-color:transparent;
+    color: blue;
+    cursor: pointer;
+}
+
+.open-pallette {
+    white-space: nowrap;
+}
+
+.pallette-cube {
+    display: inline-block;
+    height:21px;
+    width: 21px;
+    border:1px solid black;
+}
+
+.pallette-cube:hover {
+    cursor: pointer;
+    border-color: lime;
+}
+
+.diameter-value {
+    display: inline-block;
+    line-height: 23px;
+    vertical-align: top;
+    margin: 0 10px;   
 }
